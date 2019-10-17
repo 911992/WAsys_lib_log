@@ -3,8 +3,8 @@ compiler:
   - clang
   - gcc
 script:
-  - make
-  - cd src
+  # - make
+  # - cd src
   #- gcc -include src/WAsys_logging.h -std=c90 -O0 -g3 -Wall -coverage src/WAsys_logging.c src/WAsys_logging_usage_demo.c -o WAsys_logging
   #- gcc -std=c90 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"WAsys_logging.d" -MT"WAsys_logging.o" -o "WAsys_logging.o" "WAsys_logging.c"
   #- gcc -std=c90 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"WAsys_logging_usage_demo.d" -MT"WAsys_logging_usage_demo.o" -o "WAsys_logging_usage_demo.o" "WAsys_logging_usage_demo.c"
