@@ -10,7 +10,7 @@
 #include "WAsys_logging.h"
 
 void WAsys_stderr_out(char *arg_buff, size_t arg_len) {
-	fprintf(stderr, arg_buff);
+	fprintf(stderr, "%s", arg_buff);
 }
 
 int main(int arg_len, char **args) {
@@ -28,7 +28,7 @@ int main(int arg_len, char **args) {
 
 	/*re-Initialize the logging without time stamp, out to STDRR*/
 	WAsys_LOGGING_CONF_T _conf;
-	_conf.including_timestamp = 0;
+	_conf.including_timestamp = 1;
 	_conf.system_ts_func = NULL;
 	_conf.callback_func = WAsys_stderr_out;
 	WAsys_logging_init(_conf);
