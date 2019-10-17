@@ -3,6 +3,10 @@ compiler:
   - clang
   - gcc
 script:
-  - gcc -include src/WAsys_logging.h -std=c90 -O0 -g3 -Wall -coverage src/WAsys_logging.c src/WAsys_logging_usage_demo.c -o WAsys_logging
-  - ./WAsys_logging
-  - gcov WAsys_logging
+  #- cd src
+  #- gcc -include src/WAsys_logging.h -std=c90 -O0 -g3 -Wall -coverage src/WAsys_logging.c src/WAsys_logging_usage_demo.c -o WAsys_logging
+  - gcc -std=c90 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/WAsys_logging.d" -MT"src/WAsys_logging.o" -o "src/WAsys_logging.o" "../src/WAsys_logging.c"
+  - gcc -std=c90 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/WAsys_logging_usage_demo.d" -MT"src/WAsys_logging_usage_demo.o" -o "src/WAsys_logging_usage_demo.o" "../src/WAsys_logging_usage_demo.c"
+  - gcc -o "WAsys_lib_log"  ./src/WAsys_logging.o ./src/WAsys_logging_usage_demo.o   
+  - ./WAsys_lib_log
+  - gcov WAsys_lib_log
