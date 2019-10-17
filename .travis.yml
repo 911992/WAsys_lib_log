@@ -12,4 +12,6 @@
 #   - ./WAsys_lib_log
 #   - gcov WAsys_lib_log
 
-script: make all
+script: 
+  - cd Debug
+  - make all
