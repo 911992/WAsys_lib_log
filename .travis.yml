@@ -3,6 +3,6 @@ compiler:
   - clang
   - gcc
 script:
-  - gcc -std=c90 -O0 -g3 -Wall -coverage WAsys_logging.c WAsys_logging_usage_demo.c -o WAsys_logging
+  - gcc -std=c90 -O0 -g3 -Wall -coverage src/WAsys_logging.c src/WAsys_logging_usage_demo.c -o WAsys_logging
   - ./WAsys_logging
   - gcov WAsys_logging
