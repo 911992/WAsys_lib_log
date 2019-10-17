@@ -8,7 +8,7 @@
  */
 
 /***/
-#include "Wasys_logging.h"
+#include "WAsys_logging.h"
 
 #ifdef __cplusplus
 extern "C" {
