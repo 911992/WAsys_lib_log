@@ -95,12 +95,12 @@ typedef void (*WAsys_LOGGING_NATIVE_IO_CALLBACK_FUNC_T)(char *arg_buff, size_t a
  * @brief The function-pointer will be called to get current timestamp/ticks in seconds
  * @return an time_t presents current sys timestamp
  */
-typedef time_t (*WAsys_NATIVE_SYSTEM_TIMESTAMP_FUNC_T)(void);
+typedef time_t (*WAsys_LOGGING_NATIVE_SYSTEM_TIMESTAMP_FUNC_T)(void);
 
 /**
  * @brief Configuration struct for initializing
  * @see WAsys_LOGGING_NATIVE_IO_CALLBACK_FUNC_T
- * @see WAsys_NATIVE_SYSTEM_TIMESTAMP_FUNC_T
+ * @see WAsys_LOGGING_NATIVE_SYSTEM_TIMESTAMP_FUNC_T
  */
 typedef struct {
 	/**
@@ -110,7 +110,7 @@ typedef struct {
 	/**
 	 * @brief System timestamp/tick function, set it as null for using default time function
 	 */
-	WAsys_NATIVE_SYSTEM_TIMESTAMP_FUNC_T system_ts_func;
+	WAsys_LOGGING_NATIVE_SYSTEM_TIMESTAMP_FUNC_T system_ts_func;
 	/**
 	 * @brief TRUE for including the log timestamp
 	 * @see WAsys_TIMESTAMP_DATE_FORMAT
