@@ -8,24 +8,30 @@
  */
 
 /***/
-#include "WAsys_logging.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/***********************************************/
+/* - - - - - - - include - begin - - - - - - - */
+#include "WAsys_logging.h"
+/* - - - - - - - include - - end - - - - - - - */
+/***********************************************/
+
+
+
 /*************************************************/
 /* - - - - - - - variables - begin - - - - - - - */
-/*************************************************/
 
 WAsys_LOGGING_CONF_T _logging;
 
-/* - - - - - - - variables - end - - - - - - - */
+/* - - - - - - - variables - - end - - - - - - - */
+/*************************************************/
 
 
 /***************************************************/
 /* - - - - - - - static func - begin - - - - - - - */
-/***************************************************/
 
 static void _WAsys_default_stdout_logging_cb_func(char *arg_buff,
 		size_t arg_len) {
@@ -54,9 +60,11 @@ static void _WAsys_print_timestamp() {
 
 }
 
-/* - - - - - - - static func - end - - - - - - - */
+/* - - - - - - - static func - - end - - - - - - - */
+/***************************************************/
 
-
+/*************************************************/
+/* - - - - - - - Functions - begin - - - - - - - */
 void WAsys_logging_init(WAsys_LOGGING_CONF_T arg_logging_conf) {
 	_logging = arg_logging_conf;
 	if (_logging.callback_func == NULL) {
@@ -120,6 +128,10 @@ void WAsys_log_br(char *arg_msg, uint8_t arg_br) {
 void WAsys_log(char *arg_msg) {
 	WAsys_log_br(arg_msg, 1);
 }
+
+/* - - - - - - - Functions - - end - - - - - - - */
+/*************************************************/
+
 
 
 #ifdef __cplusplus

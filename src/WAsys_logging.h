@@ -88,7 +88,7 @@ extern "C" {
  * @param arg_buff the buffer(log string) need to be logged
  * @param arg_len the buffer len/size
  */
-typedef void (*WAsys_NATIVE_LOGGING_CALLBACK_FUNC_T)(char *arg_buff, size_t arg_len);
+typedef void (*WAsys_LOGGING_NATIVE_IO_CALLBACK_FUNC_T)(char *arg_buff, size_t arg_len);
 
 /**
  * @brief Callback function when logging needs current timestamp
@@ -99,14 +99,14 @@ typedef time_t (*WAsys_NATIVE_SYSTEM_TIMESTAMP_FUNC_T)(void);
 
 /**
  * @brief Configuration struct for initializing
- * @see WAsys_NATIVE_LOGGING_CALLBACK_FUNC_T
+ * @see WAsys_LOGGING_NATIVE_IO_CALLBACK_FUNC_T
  * @see WAsys_NATIVE_SYSTEM_TIMESTAMP_FUNC_T
  */
 typedef struct {
 	/**
 	 * @brief Logging callback function, set it as NULL for using the default putc function
 	 */
-	WAsys_NATIVE_LOGGING_CALLBACK_FUNC_T callback_func;
+	WAsys_LOGGING_NATIVE_IO_CALLBACK_FUNC_T callback_func;
 	/**
 	 * @brief System timestamp/tick function, set it as null for using default time function
 	 */
@@ -117,7 +117,7 @@ typedef struct {
 	 */
 	uint8_t including_timestamp;
 } WAsys_LOGGING_CONF_T;
-/* - - - - - - - types - begin - - - - - - - */
+/* - - - - - - - types - end - - - - - - - */
 
 
 /*****************************************************/
