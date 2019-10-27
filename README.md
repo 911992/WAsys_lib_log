@@ -128,6 +128,9 @@ int main(){
 ...
 ```
 
+### STM32
+A good and detailed blog about it, could be found [here (https://arashmd.blogspot.com/2019/10/logging-and-debugging-stm32-using-serial.html)](https://arashmd.blogspot.com/2019/10/logging-and-debugging-stm32-using-serial.html). Hope you find it great.
+
 ## Troubleshooting
 
 ### UB/`SEGFAULT` by `WAsys_logf`
