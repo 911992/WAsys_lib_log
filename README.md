@@ -5,6 +5,17 @@ Compatible with embedded system, where there is no STDOUT
 
 Sample Usage could be found at `WAsys_logging_usage_demo.c`
 
+## Revision History
+**Revision 0.2** (Oct 26, 2019)
+1. Fixed linking error, when `time()` function may not be available(for default timestamp logging) | Issue #1 [link](https://github.com/911992/WAsys_lib_log/issues/1)
+2. Added `log` and `logf` for easier logging
+
+
+**Initial Release** (Oct 17, 2019)
+
+## Lib Overview
+![WAsys Lib Log Diagram Overview](./docs/overall_diagram.svg)
+
 ## FAQ
 
 ### Does it print on `STDOUT`?
