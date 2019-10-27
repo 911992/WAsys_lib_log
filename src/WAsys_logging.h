@@ -3,8 +3,17 @@
  *
  * Basic logging op
  *
- *  Created on: Oct 17, 2019
+ *  Created on: Oct 17, 2019 | last edit: Oct 26, 2019 (rev 0.2)
  *      Author: Arash (911992)
+ *
+ * History:
+ *  Revision 0.2
+ *     Added log, log_br and logf macros for easier logging
+ *     Comment/document proofing
+ *     Added overview usage(layers)
+ *     Added sample usage(blog) for STM32
+ *     Added _WAsys_TIME_FUNC_MAYBE_DEFINED macro for preventing linking error (windows and linux only for now)
+ *  initial version: Oct 17, 2019
  */
 
 #ifndef _WASYS_LOGGING_HEADER_
@@ -31,7 +40,14 @@ extern "C" {
 /**********************************************/
 
 /**
- * Define it as 1, in order to enable global WAsys_msg char* static array
+ * Checking(guessing) if time() function is available, to prevent linking error
+ */
+#if defined(_WIN32) || defined(__linux__)
+# _WAsys_TIME_FUNC_MAYBE_DEFINED
+#endif
+
+/**
+ * @brief Define it as 1, in order to enable global WAsys_msg char* static array
  * @see WAsys_msg
  * @see _MSG_LEN
  */
@@ -57,6 +73,11 @@ extern "C" {
  */
 #define WAsys_log_msg() WAsys_log(WAsys_msg)
 
+/**
+ * @brief Easy access for WAsys_logf
+ */
+#define logf WAsys_logf
+
 #endif
 
 /**
@@ -71,11 +92,17 @@ extern "C" {
 #define WAsys_TIMESTAMP_DATE_FORMAT "%Y%m%d-%H:%M:%S-> "
 
 /**
- * String length for holding the formatted timestamp(plus one extra for \0 at the end)
+ * @brief String length for holding the formatted timestamp(plus one extra for \0 at the end)
  * @see WAsys_TIMESTAMP_DATE_FORMAT
  */
 #define WAsys_TIMESTAMP_DATE_FORMAT_LEN 18/*time format*/ + 3 /*for -> */
 
+/**
+ * @brief Easy access for WAsys_log
+ */
+#define log WAsys_log
+
+#define log_br WAsys_log_br
 
 /* - - - - - - - Macros - end - - - - - - - */
 

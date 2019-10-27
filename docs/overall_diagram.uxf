@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>550</y>
+      <w>730</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>HW
+valign=bottom
+halign=left
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>430</y>
+      <w>730</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>HAL/OS
+valign=bottom
+halign=left
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>470</y>
+      <w>230</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Communication
+Protocol
+(RS485, RS232, etc...)
+layer=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>160</y>
+      <w>280</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>User Business Layer
+valign=bottom
+halign=left
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>160</y>
+      <w>280</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>WAsys Lib Log
+bg=green
+valign=bottom
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>170</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Log IO
+Handler
+valign=center
+bg=cyan
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1050</x>
+      <y>290</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Default
+Log IO
+Handler
+(STDOUT)
+valign=center
+layer=1
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>370</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>470</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>STDOUT
+layer=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>130</y>
+      <w>770</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>Codebase/Applciation
+lt=.
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>60</x>
+      <y>130</y>
+      <w>360</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>*Document*
+Project: WAsys Lib Log
+Title: Lib overall view
+Doc version: 0.2(Oct 26, 2019)
+Author(s):
+Arashi (@911992) {principal author}
+*Meta Legends*
+
+valign=top
+halign=left
+layer=-100
+bg=light_gray
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>60</x>
+      <y>590</y>
+      <w>360</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>*Version History*
+*v0.2*
+(Oct 26, 2019)
+Author: Arashi
+-.
+Initial release
+
+
+valign=top
+halign=left
+layer=-100
+bg=light_gray
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>170</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Time
+formatter
+valign=center
+halign=left
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>310</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>System
+timestamp/
+tick
+handler
+valign=center
+bg=cyan
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>470</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>time()
+layer=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>190</y>
+      <w>250</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;220.0;230.0;220.0;230.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>250</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1050</x>
+      <y>180</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Default
+Time
+Handler
+(time())
+valign=center
+layer=2
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>290</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Log
+formatter
+valign=center
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>320</y>
+      <w>50</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>310</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;callback&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>190</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;callback&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>170</y>
+      <w>120</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Logging
+valign=center
+bg=cyan
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>250</y>
+      <w>350</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;Initializing&gt;&gt;
+&lt;&lt;logging&gt;&gt;</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>570</y>
+      <w>360</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Physical IO
+(e.g. 1 wire, 2 wires, etc...)
+bg=light_gray
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>520</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>520</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>390</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>620</x>
+      <y>390</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>250</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Lib related
+user code implementation&gt;&gt;
+valign=center
+bg=cyan
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>330</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;user business code&gt;&gt;
+bg=pink
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>410</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Lib core/essential part&gt;&gt;
+valign=center
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>490</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Lib default behavior&gt;&gt;
+valign=center
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

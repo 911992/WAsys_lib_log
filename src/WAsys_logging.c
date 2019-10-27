@@ -3,8 +3,12 @@
  *
  * Basic logging op
  *
- *  Created on: Oct 17, 2019
+ *  Created on: Oct 17, 2019 | last edit: Oct 26, 2019 (rev 0.2)
  *      Author: Arash (911992)
+ * History:
+ *  Revision 0.2
+ *     Using _WAsys_TIME_FUNC_MAYBE_DEFINED macro for preventing linking error when time() function may not be available
+ *  initial version: Oct 17, 2019
  */
 
 /***/
@@ -44,7 +48,11 @@ static void _WAsys_default_stdout_logging_cb_func(char *arg_buff,
 
 static time_t _WAsys_default_system_timestamp_func() {
 	time_t _ts;
+#ifdef _WAsys_TIME_FUNC_MAYBE_DEFINED
 	time(&_ts);
+#else
+	_ts = 0;
+#endif
 	return (time_t) _ts;
 }
 
