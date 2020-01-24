@@ -7,7 +7,14 @@
  *      Author: Arash (911992)
  *
  * History:
- *  Revision 0.2
+ *  Revision 0.3 (Jan 24, 2020)
+ *     Fixed some missed docs/comments
+ *     Added funcs(WAsys_log_bytea_hex) and related macros(log_bytea_sep, and log_bytea) for logging an array as hex
+ *     Support for logging NULL ptr args (WAsys_NULL_ARGUMENT_LOGGING , WAsys_NULL_BYTEA_ARGUMENT_LOGGING)
+ *     Added func WAsys_log_ts and macro log_ts to printout the timestamp only(if applicable)
+ *     Added __MINGW32__ and __MINGW64__ macros check for assuming time func could be available(windows/mingw)
+ *
+ *  Revision 0.2 (Oct 26, 2019)
  *     Added log, log_br and logf macros for easier logging
  *     Comment/document proofing
  *     Added overview usage(layers)
@@ -42,13 +49,13 @@ extern "C" {
 /**
  * Checking(guessing) if time() function is available, to prevent linking error
  */
-#if defined(_WIN32) || defined(__linux__)
-# _WAsys_TIME_FUNC_MAYBE_DEFINED
+#if defined(_WIN32) || defined(__linux__) || defined(__MINGW32__) || defined(__MINGW64__)
+#define _WAsys_TIME_FUNC_MAYBE_DEFINED
 #endif
 
 /**
- * @brief Define it as 1, in order to enable global WAsys_msg char* static array
- * @see WAsys_msg
+ * @brief Define it as 1, in order to enable global WAsys_logging_msg char* static array
+ * @see WAsys_logging_msg
  * @see _MSG_LEN
  */
 #define WAsys_USE_GLOBAL_MSG_VAR 1
@@ -67,11 +74,11 @@ extern "C" {
 #define _MSG_LEN _MSG_LEN_DEFAULT
 
 /**
- * @brief Logs the global WAsys_msg with a new line
- * @see WAsys_msg
+ * @brief Logs the global WAsys_logging_msg with a new line
+ * @see WAsys_logging_msg
  * @see WAsys_log
  */
-#define WAsys_log_msg() WAsys_log(WAsys_msg)
+#define WAsys_log_msg() WAsys_log(WAsys_logging_msg)
 
 /**
  * @brief Easy access for WAsys_logf
@@ -83,9 +90,6 @@ extern "C" {
 /**
  * @brief Format for strftime function (including coloring)
  * @brief NOTE: make sure the format will result a String with total size of (WAsys_TIMESTAMP_DATE_FORMAT_LEN-1) or less
- * @brief please see ANSI terminal standard coloring
- * \u001b[32m ANSI green
- * \u001b[0m reset
  * @see WAsys_TIMESTAMP_DATE_FORMAT_LEN
  * @see http://www.cplusplus.com/reference/ctime/strftime/
  */
@@ -98,11 +102,46 @@ extern "C" {
 #define WAsys_TIMESTAMP_DATE_FORMAT_LEN 18/*time format*/ + 3 /*for -> */
 
 /**
- * @brief Easy access for WAsys_log
+ * @brief Easy access for basic logging ops
  */
 #define log WAsys_log
 
 #define log_br WAsys_log_br
+
+#define log_ts WAsys_log_ts
+
+/**
+ * @brief Printing following val, when given argument for logging is a NULL ptr
+ */
+#define WAsys_NULL_ARGUMENT_LOGGING "<<NULL>>"
+
+/**
+ * @brief Printing following val, when given byte array argument for logging is a NULL ptr
+ */
+#define WAsys_NULL_BYTEA_ARGUMENT_LOGGING " [ N , U , L , L ] "
+
+/**
+ * @brief String format for printing one byte in hex scheme
+ * @see WAsys_log_bytea_hex
+ */
+#define WAsys_BYTE_ARRAY_LOG_HEX_FORMAT "%02x"
+
+/**
+ * @brief Default separator for printing an array as hex
+ * @see WAsys_log_bytea_hex
+ */
+#define WAsys_BYTE_ARRAY_LOG_DEFAULT_SEPARATOR " "
+
+/**
+ * @brief Easy access for byte array logging ops
+ */
+#define log_bytea_sep WAsys_log_bytea_hex
+
+/**
+ * @brief calls the WAsys_log_bytea_hex for default array separator
+ * @see WAsys_BYTE_ARRAY_LOG_DEFAULT_SEPARATOR
+ */
+#define log_bytea(_arg_bytea,_arg_bytea_len) WAsys_log_bytea_hex(_arg_bytea,_arg_bytea_len,WAsys_BYTE_ARRAY_LOG_DEFAULT_SEPARATOR)
 
 /* - - - - - - - Macros - end - - - - - - - */
 
@@ -158,7 +197,7 @@ typedef struct {
  * @see _MSG_LEN
  * @see _MSG_LEN_DEFAULT
  */
-extern char WAsys_msg[_MSG_LEN];
+extern char WAsys_logging_msg[_MSG_LEN];
 
 #endif
 /* - - - - - - - Externed vars - end - - - - - - - */
@@ -171,14 +210,14 @@ extern char WAsys_msg[_MSG_LEN];
 #if (WAsys_USE_GLOBAL_MSG_VAR == 1)
 
 /**
- * @brief memset the global WAsys_msg to zeros
- * @see WAsys_msg
+ * @brief memset the global WAsys_logging_msg to zeros
+ * @see WAsys_logging_msg
  */
 void WAsys_zeromsg(void);
 
 /**
- * @brief Use it if you know are what you are doing, make sure WAsys_msg is large enough to host your target formated message
- * @brief Format the given VA_ARGS on global WAsys_msg, then prints it, first on WAsys_msg, then on associate callback io
+ * @brief Use it if you know are what you are doing, make sure WAsys_logging_msg is large enough to host your target formated message
+ * @brief Format the given VA_ARGS on global WAsys_logging_msg, then prints it, first on WAsys_logging_msg, then on associate callback io
  * @brief NOTE: make sure _MSG_LEN is big enough. If you find the formatted text incompleted/trimmed(or any SEGFAULT), so this could be not-significant _MSG_LEN
  * @brief Please note it won't add a new line(\n) at the end of the text, place it if you want
  * @see _MSG_LEN
@@ -192,7 +231,7 @@ void WAsys_logf(char *fmt, ...);
 
 /**
  * @brief Initialize and sets the given arg_logging_conf as logging configs
- * @param arg_logging_conf contains
+ * @param arg_logging_conf contains lib initializing setup/conf
  * @see WAsys_LOGGING_CONF_T
  * @see WAsys_logging_init_default
  */
@@ -217,20 +256,52 @@ void WAsys_logging_init_default(void);
 void WAsys_logging_init_default_timestamp(void);
 
 /**
- * @brief Logs the given non-null, null-terminated string on default debug serial pipe
+ * @brief Logs the given null-terminated string(or NULL ptr string) on default debug log pipe(cb func).
  * It calls @fn WAsys_log_br with arg_br:=true to print an extra \n after message were sent
- * @param arg_msg the null-terminated message should be logged (must be non-null)
+ * Prints WAsys_NULL_ARGUMENT_LOGGING when given argument is a null ptr string
+ * @param arg_msg the null-terminated message should be logged (could be NULL)
  * @see WAsys_log_br
+ * @see log
+ * @see log_br
+ * @see WAsys_NULL_ARGUMENT_LOGGING
+ * @see WAsys_log_bytea_hex
+ * @see log_bytea
  */
 void WAsys_log(char *arg_msg);
 
 /**
- * @brief Logs the given non-null, null-terminated string on default debug serial pipe.
+ * @brief Logs the given null-terminated string(or NULL ptr string) on default debug log pipe(cb func).
  * Performs another IO write call for new-line(Line-Feed \\n , 0x10) when arg_br is not zero
- * @param arg_msg the null-terminated message (must be non-null)
+ * Prints WAsys_NULL_ARGUMENT_LOGGING when given argument is a null ptr string
+ * @param arg_msg the null-terminated message (could be NULL)
  * @param arg_br if true(non-zero), then a new line will be appended
+ * @see WAsys_log
+ * @see log
+ * @see log_br
+ * @see WAsys_NULL_ARGUMENT_LOGGING
+ * @see WAsys_log_bytea_hex
+ * @see log_bytea
  */
 void WAsys_log_br(char *arg_msg, uint8_t arg_br);
+
+/**
+ * @brief Gets a time from associated timestamp callback function, then logs it out without a new line. It ignores the op if the given pointer to timestamp func is a NULL, or lib has not initialized.
+ * @see WAsys_LOGGING_NATIVE_SYSTEM_TIMESTAMP_FUNC_T
+ * @see WAsys_LOGGING_CONF_T
+ */
+void WAsys_log_ts(void);
+
+/**
+ * @brief Logs the given byte-array in hex scheme.
+ * @param arg_bytea the byte array need to be formatted and printed(could be NULL)
+ * @param arg_bytea_len size of given byte array
+ * @param arg_separator a null-terminated string, separator needed between each formated byte(could be NULL)
+ * @see WAsys_BYTE_ARRAY_LOG_HEX_FORMAT
+ * @see WAsys_NULL_BYTEA_ARGUMENT_LOGGING
+ * @see log_bytea_sep
+ */
+void WAsys_log_bytea_hex(uint8_t *arg_bytea, size_t arg_bytea_len,
+		char *arg_separator);
 
 /* - - - - - - - Functions - end - - - - - - - */
 
