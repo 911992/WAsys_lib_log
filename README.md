@@ -6,6 +6,9 @@ Compatible with embedded system, where there is no STDOUT
 Sample Usage could be found at `WAsys_logging_usage_demo.c`
 
 ## Revision History
+**Revision 0.3.1** (Jan 26, 2020)
+1. Added missed macro define (D__WAsys_logging_usage_demo_activated__) for travis, now build passes
+
 **Revision 0.3** (Jan 24, 2020)
 1. Content of file `WAsys_logging_usage_demo.c` is ignored by default, to have the sample usage, define(un-comment) macro `__WAsys_logging_usage_demo_activated__`
 2. Fixed some typo and missed meta data (e.g. date of revisions in source/header files)

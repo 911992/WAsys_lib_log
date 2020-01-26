@@ -1,8 +1,14 @@
+#Created on: Oct 17, 2019
+# Author: Arash (911992)
+# 
+# History:
+#  Revision 0.3.1 (Jan 26, 2020)
+#   Added missed macro define (D__WAsys_logging_usage_demo_activated__), now build passes
 language: c
 compiler:
   - clang
   - gcc
 script:
-  - gcc -I./src -std=c90 -O0 -g3 -Wall -o WAsys_lib_log src/WAsys_logging.c src/WAsys_logging_usage_demo.c
+  - gcc -D__WAsys_logging_usage_demo_activated__ -I./src -std=c90 -O0 -g3 -Wall -o WAsys_lib_log src/WAsys_logging.c src/WAsys_logging_usage_demo.c
   - ./WAsys_lib_log
   - gcov WAsys_lib_log
